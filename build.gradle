@@ -14,6 +14,13 @@ subprojects {
         classifier "source"
     }
     // END SNIPPET publish-custom-artifact
+    task copyToLib( type: Copy ) {
+        into "$buildDir/lib"
+        from configurations.runtime
+    }
+
+    jar { dependsOn copyToLib }
+
 }
 
 project(":project1") {
